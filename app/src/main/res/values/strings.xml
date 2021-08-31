@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">FlightSearch</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="search_for_the_flight">Search for the flight:</string>
+    <string name="origin_station">Origin station</string>
+    <string name="destination_station">Destination station</string>
+    <string name="departure_date">Departure date</string>
+    <string name="number_of_adults">Number of adults</string>
+    <string name="number_of_teens">Number of teens</string>
+    <string name="number_of_children">Number of children</string>
+    <string name="search">Search</string>
+</resources>
