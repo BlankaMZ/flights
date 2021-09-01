@@ -65,8 +65,8 @@ class FlightSearchViewModel : ViewModel() {
             try {
                 val result = FlightApi.retrofitService.getFlight(
                     "2021-12-30",
-                    "WRO",
                     "DUB",
+                    "STN",
                     "1",
                     "0",
                     "0",

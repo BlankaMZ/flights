@@ -33,13 +33,6 @@ interface FlightApiService {
         @Query("inf") inf: String = "0", @Query("ToUs") toUs: String = "AGREED"
     ): FlightResponseNetwork
 
-//    @Headers("x-apikey: 795ad45e4dc222bc0e5bd1c163bb885e3635e")
-//    @POST(CAR_LIST_ENDPOINT)
-//    suspend fun addCar(@Body newCar: CarNetwork) : CarNetwork
-//
-//    @Headers("x-apikey: 795ad45e4dc222bc0e5bd1c163bb885e3635e")
-//    @GET(PERSON_LIST_ENDPOINT)
-//    suspend fun getPeople(): List<PersonNetwork>
 }
 
 

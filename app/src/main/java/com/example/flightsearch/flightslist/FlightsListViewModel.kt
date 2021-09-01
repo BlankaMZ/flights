@@ -1,8 +1,10 @@
 package com.example.flightsearch.flightslist
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.flightsearch.domain.FlightInfo
 import com.example.flightsearch.domain.FlightResponse
 
 class FlightsListViewModel(private val flightsResponse: FlightResponse) : ViewModel() {
@@ -18,5 +20,9 @@ class FlightsListViewModel(private val flightsResponse: FlightResponse) : ViewMo
 
     init {
         setFlightsInfo()
+    }
+
+    fun onFlightClicked(flight: FlightInfo) {
+    Log.i("DATA", "Flight ${flight.flightNumber} clicked")
     }
 }

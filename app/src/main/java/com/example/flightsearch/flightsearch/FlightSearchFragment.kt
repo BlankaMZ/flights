@@ -40,7 +40,7 @@ class FlightSearchFragment : Fragment() {
         viewModelFactory = FlightSearchViewModelFactory()
         viewModel = ViewModelProvider(this, viewModelFactory).get(FlightSearchViewModel::class.java)
 
-        binding.lifecycleOwner = this
+        binding.setLifecycleOwner(viewLifecycleOwner)
         binding.flightSearchViewModel = viewModel
 
         return binding.root

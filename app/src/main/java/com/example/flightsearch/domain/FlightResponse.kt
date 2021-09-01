@@ -1,6 +1,7 @@
 package com.example.flightsearch.domain
 
 import android.os.Parcelable
+import com.example.flightsearch.network.StationsList
 import kotlinx.android.parcel.Parcelize
 
 
@@ -33,3 +34,29 @@ data class Flight(
     val timeUTC: List<String>,
     val duration: String
 ) : Parcelable
+
+data class FlightInfo(
+    val origin: String,
+    val originName: String,
+    val destination: String,
+    val destinationName: String,
+    val flightNumber: String,
+    val timeUTC: List<String>,
+    val duration: String
+)
+
+fun FlightResponse.asFlightsInfoList(): List<FlightInfo> {
+
+    return trips?.first()?.dates?.first()?.flights?.map {
+        FlightInfo(
+            origin = trips?.first().origin,
+            originName = trips?.first().originName,
+            destination = trips?.first().destination,
+            destinationName = trips?.first().destinationName,
+            flightNumber = it.flightNumber,
+            timeUTC = it.timeUTC,
+            duration = it.duration
+        )
+    } ?: listOf<FlightInfo>()
+
+}
