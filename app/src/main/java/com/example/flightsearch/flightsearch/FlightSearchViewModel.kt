@@ -62,28 +62,53 @@ class FlightSearchViewModel : ViewModel() {
 
     private fun getAvailableFlights() {
         viewModelScope.launch {
-            try {
-                val result = FlightApi.retrofitService.getFlight(
-                    "2021-12-30",
-                    "DUB",
-                    "STN",
-                    "1",
-                    "0",
-                    "0",
-                ).toFlight()
-                _flightData.value = result
-                if (result.message == null) {
-                    _statusMessage.value = "We found something!"
+            if (inputOrigin.value != null && inputDestination.value != null && inputDepartureDate.value != null && inputNoOfAdults.value != null) {
+                if (inputNoOfAdults.value!!.toInt() < 1) {
+                    _statusMessage.value = "Must be min 1 adult passenger"
+                } else if (numberOfPassengers() > 25) {
+                    _statusMessage.value = "Must be less then 25 passengers"
                 } else {
-                    _statusMessage.value = result.message
+                    try {
+                        val result = FlightApi.retrofitService.getFlight(
+                            inputDepartureDate.value!!,
+                            inputOrigin.value!!,
+                            inputDestination.value!!,
+                            inputNoOfAdults.value!!,
+                            inputNoOfChildren.value ?: "0",
+                            inputNoOfTeens.value ?: "0",
+                        ).toFlight()
+                        _flightData.value = result
+                        if (result.message == null) {
+                            if (result.trips?.first()?.dates?.first()?.flights?.isNotEmpty() == true) {
+                                _statusMessage.value = "We found something!"
+                            } else {
+                                _statusMessage.value = "No results!"
+                            }
+                        } else {
+                            _statusMessage.value = result.message
+                        }
+                    } catch (e: Exception) {
+                        _statusMessage.value = e.toString()
+                    }
                 }
-            } catch (e: Exception) {
-                _statusMessage.value = e.toString()
+            } else {
+                _statusMessage.value = "Fill the fields!"
             }
         }
     }
 
     fun onFlightsDataNavigated() {
         _flightData.value = null
+    }
+
+    fun chooseDate(year: Int, month: Int, day: Int) {
+        inputDepartureDate.value = "$year-$month-$day"
+    }
+
+    private fun numberOfPassengers(): Int {
+        var adults = inputNoOfAdults.value?.toIntOrNull() ?: 0
+        var teens = inputNoOfAdults.value?.toIntOrNull() ?: 0
+        var children = inputNoOfAdults.value?.toIntOrNull() ?: 0
+        return adults + teens + children
     }
 }
