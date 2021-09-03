@@ -103,3 +103,7 @@ data class SegmentNetwork(
     val timeUTC: List<String>,
     val duration: String
 )
+
+data class StationsResponseNetwork(
+    val stations: List<StationNetwork>,
+)

@@ -41,7 +41,7 @@ class FlightSearchViewModel : ViewModel() {
         get() = _statusMessage
 
     init {
-//        getAvailableStations()
+        getAvailableStations()
     }
 
     fun searchTheFlight() {
@@ -52,7 +52,7 @@ class FlightSearchViewModel : ViewModel() {
         viewModelScope.launch {
             try {
 
-                val listResult = StationsList(FlightApi.retrofitService.getStations())
+                val listResult = StationsList(FlightApi.retrofitService.getStations().stations)
                 _stationsList.value = listResult.asDomainModel()
             } catch (e: Exception) {
                 Log.i("Failure", e.toString())

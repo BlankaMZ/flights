@@ -5,7 +5,7 @@ import com.example.flightsearch.domain.Station
 data class StationNetwork(
     val code: String,
     val name: String,
-    val alternateName: String,
+    val alternateName: String?,
     //alias code to implement
     val countryCode: String,
     val countryName: String

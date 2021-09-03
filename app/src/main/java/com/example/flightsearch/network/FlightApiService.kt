@@ -6,7 +6,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.*
 
-private const val STATIONS_LIST_ENDPOINT = "https://tripstest.ryanair.com/static/stations.json"
+private const val STATIONS_LIST_ENDPOINT = "https://mobile-testassets-dev.s3.eu-west-1.amazonaws.com/stations.json"
 private const val FLIGHT_SEARCH_ENDPOINT = "Availability"
 
 private val moshi = Moshi.Builder()
@@ -22,7 +22,7 @@ interface FlightApiService {
 
     @Headers("Content-type: application/json")
     @GET(STATIONS_LIST_ENDPOINT)
-    suspend fun getStations(): List<StationNetwork>
+    suspend fun getStations(): StationsResponseNetwork
 
     @Headers("Content-type: application/json")
     @GET(FLIGHT_SEARCH_ENDPOINT)

@@ -2,11 +2,9 @@ package com.example.flightsearch.flightslist
 
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
-import com.example.flightsearch.domain.Flight
 import com.example.flightsearch.domain.FlightInfo
 import com.example.flightsearch.domain.FlightResponse
 import java.text.SimpleDateFormat
-import java.time.format.DateTimeFormatter
 import java.util.*
 
 @BindingAdapter("showFlightNumber")
